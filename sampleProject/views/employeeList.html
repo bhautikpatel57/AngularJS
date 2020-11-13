@@ -1,0 +1,37 @@
+
+<div class="container">
+
+    <h4>List of Current Employees</h4>
+    <div>
+        <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th>Employee ID</th>
+                <th>Employee Name</th>
+                <th>Birth Date</th>
+                <th>Age</th>
+                <th>Edit</th>
+                <th>Delete</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr ng-repeat="emp in displayData">
+                <td>{{emp.id}}</td>
+                <td>{{emp.name}}</td>
+                <!-- <td>{{emp.birthday | date : "MM/dd/yyyy"}}</td> -->
+                <td>{{emp.birthday | date:'MM/dd/yyyy'}}</td>
+                <!-- <td>{{emp.birthday}}</td> -->
+                <td>{{emp.age}}</td>
+                <td style="width: 5%">
+                    <button type="button" class="btn btn-primary btn-sm" ng-click="editEmployee($index);">Edit</button>
+                </td>
+                <td style="width: 5%">
+                  <button type="button" class="btn btn-danger btn-sm" ng-click="deleteEmployee($index);">Delete</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+      </div>
+
+    <button type="button" class="btn btn-primary mb-2" ng-click="addEmployee();">Add Employee</button>
+</div>

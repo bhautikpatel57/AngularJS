@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="MyApp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+</head>
+<body>
+    <h3>Share data between controllers</h3>
+    
+    <div ng-controller='Ctrl1' class='well'>
+      <h4>Controller 1</h4>
+      <div>
+        <input type='text' ng-model='Product.name' placeholder='Enter product name' />
+        <input type='text' ng-model='Product.price' placeholder='Enter price' />
+      </div>
+      <h3>Product {{Product.name}} costs {{Product.price}}  </h3>
+    </div>
+    
+    <div ng-controller='Ctrl2' class='well'>
+      <h4>Controller 2</h4>
+      <div>
+        <h3>Product {{Product.name}} costs {{Product.price}}  </h3>
+      </div>
+
+   <script>
+    var app = angular.module("MyApp", []);
+
+
+    //Create a service Products
+    app.service('SharedDataService', function () {
+        var Produc = {
+            name: '',
+            price: ''
+        };
+        return Produc;
+    });
+
+    app.controller("Ctrl1", function ($scope, SharedDataService) {
+            $scope.Product = SharedDataService;
+    });
+    
+    app.controller("Ctrl2", function ($scope, SharedDataService) {
+            $scope.Product = SharedDataService;
+        }
+    );
+   </script> 
+</body>
+</html>
+

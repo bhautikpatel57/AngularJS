@@ -1,0 +1,60 @@
+body{
+    background-image: url(/AnguarJS/tabsAssgn/images/bg.jpg);
+}
+
+#naviMain{
+    width: 220px;
+    height: 42px;
+    border: 1px solid black;
+    padding: 0px;
+    margin-top: 100px;
+    margin-left: 279px;
+    border: hidden;
+}
+
+#naviMain ul{
+    background-color: rgb(149, 177, 150);
+}
+#typesName{
+    font-style: italic;
+    font-family: 'Times New Roman';
+    font-weight:600;
+    color: grey;
+    white-space: pre;
+}
+#distyl{
+    font-style: italic;
+    font-weight: 200;
+}
+
+.tabDiv{
+    width: 750px;
+}
+
+#showPhotoDiv{
+    border: 1px solid black;
+    width: 261px;
+    height: 196px;
+    border: hidden;
+}
+#thumbDiv{
+    border: 1px solid black;
+    width: 352px;
+    height: 70px;
+    margin-top: 10px;
+    border: hidden;
+}
+.thumbbImg{
+    width: 70px;
+    height: 65px;
+    padding: 5px;
+    padding-left: 0px;
+}
+.photooDiv{
+    width: 261px;
+    height: 196px;
+}
+
+.styleLi{
+    line-height: 1.0px;
+}

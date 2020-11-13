@@ -1,0 +1,21 @@
+
+  <div id="mainDiv">
+      <form id="myForm">
+          <div class="imgcontainer">
+            <img src="avatar.jpg" alt="Avatar" class="avatar">
+          </div>
+          <div class="container">
+            <label for="uname"><b>Username</b></label>
+            <input type="text" ng-model="user" class="userPassInput" placeholder="Enter Username" name="uname">
+        
+            <label for="psw"><b>Password</b></label>
+            <input type="password" ng-model="pass" class="userPassInput" placeholder="Enter Password" name="psw" >
+                
+            <input type="button" id="loginBtn" value="Login" ng-click="procced()">
+          </div>
+        
+          <div class="container" style="background-color:#f1f1f1">
+            <button type="button" class="btn btn-danger mb-2" ng-click="closeBrowser()">Cancel</button>
+          </div>
+      </form>
+  </div>

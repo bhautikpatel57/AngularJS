@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search</title>
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- css -->
+    <link rel="stylesheet" href="search.css">
+    <!-- BootStrap -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+</head>
+<body ng-controller="searchController">
+    <!-- search for specific string you enter -->
+    <div class="searchDiv">
+        <div id="inputDiv">
+            <input type="text" size="30px" class="textField" ng-model="searchWord">
+            <input type="button" value="x" class="xButton" ng-click="clearSearch(); isVisible=false">
+        </div>
+        <input id="searchButton" type="Button" ng-click="customInput=searchWord; isVisible=true"  value="Search" style="padding: 1px 30px;">
+    </div>
+
+    <!-- Display the result in tiles -->
+    <div class="jumbotron jumbotron-fluid" ng-init="searchForWord();" >
+        <div class="container">
+            <p ng-hide="searchWord">Please input a search query</p>
+            <div class="posts">
+                <div class="post" ng-show="isVisible" ng-repeat="md in myData | filter:{name:customInput};" ng-style="md.gender === 'M' && {'border': '2px solid blue'} || md.gender === 'F' && {'border': '2px solid red'}" >
+                    <h5>{{md.name}}</h5> <br /> 
+                    <p class="threeP" ><span >Gender: </span> {{ md.gender }} </p>
+                    <p class="threeP"><span >City: </span>{{ md.city }}</p>
+                    <p class="threeP"><span >Email: </span>{{ md.email }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="search.js"></script>
+</body>
+</html>

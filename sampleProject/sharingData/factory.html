@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factory</title>
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+</head>
+<body>
+    <div ng-controller="firstController">
+        <p>{{ name }}</p>
+    </div>
+
+
+    <script>
+
+        var myApp = angular.module('app', []);
+    
+        myApp.factory('myFactory', function(){
+            return{
+                name: 'John',
+                display: function(){
+                    console.log("I'm in the factory")
+                }
+            }
+        });
+        myApp.controller('firstController', function($scope, myFactory){
+            $scope.name = myFactory.name;
+            $scope.display = myFactory.display();
+        })
+    </script>
+</body>
+</html>

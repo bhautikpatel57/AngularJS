@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Main</title>
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <!-- My css (always list your own css after the outside CSS ex.bootstrap)--> 
+    <link rel="stylesheet" href="main.css">
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+</head>
+<body>
+
+    <div id="naviMain">
+        <ul class="nav nav-tabs" ng-controller="HeaderController">
+            <li class="nav-item" >
+              <a class="nav-link" ng-class="{ active: isActive('/tab1')}" href="#!tab1">Tab 1</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" ng-class="{ active: isActive('/tab2')}" href="#!tab2">Tab 2</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" ng-class="{ active: isActive('/tab3')}" href="#!tab3">Tab 3</a>
+            </li>
+        </ul>
+    </div>
+
+    <div>
+        <div ng-view=""></div>
+    </div>
+
+    <script>
+        var myApp = angular.module('app', ['ngRoute']);
+
+        myApp.config(function($routeProvider){
+            $routeProvider
+                .when('/tab1',
+                {
+                    controller: 'filterController',
+                    templateUrl: 'Partials/tab1.html'
+                })
+                .when('/tab2',
+                {
+                    controller: 'imgController',
+                    templateUrl: 'Partials/tab2.html'
+                })
+                .when('/tab3',
+                {
+                    controller: 'addItemController',
+                    templateUrl: 'Partials/tab3.html'
+                })
+                .otherwise(
+                {
+                    redirectTo: '/tab1'
+                })
+        });
+
+
+        // Navbar controller
+        myApp.controller('HeaderController', function($scope, $location){
+            $scope.isActive = function (viewLocation){
+                return viewLocation === $location.path();
+            };
+        });
+
+        // Tab1 filter controller
+        myApp.controller('filterController', function($scope){
+            $scope.filterOptions = {
+               stores:[
+                        {id:1, name:'Show All', type:'all'},
+                        {id:2, name:'Text', type:'text'},
+                        {id:3, name:'Videos', type: 'videos'},
+                        {id:4, name:'Photos', type:'photos'}
+                ]};
+
+            $scope.filterItems = {
+                store: $scope.filterOptions.stores[0]
+            };
+
+            $scope.customFilter = function(data){
+                if(data.type === $scope.filterItems.store.type){
+                    return true;
+                }else if($scope.filterItems.store.type === "all"){
+                    return true;
+                }else{
+                    return false;
+                }
+            };
+    
+            $scope.data = [
+                {
+                    name: 'photo1.jpg',
+                    type: 'photos'
+                },
+                {
+                    name: 'photo2.jpg',
+                    type: 'photos'
+                },
+                {
+                    name: 'video1.mp4',
+                    type: 'videos'
+                },
+                {
+                    name: 'video2.mp4',
+                    type: 'videos'
+                },
+                {
+                    name: 'text1.txt',
+                    type: 'text'
+                },
+                {
+                    name: 'text2.txt',
+                    type: 'text'
+                },
+            ];
+        });
+
+
+        // Tab2 image controller
+        myApp.controller('imgController', function($scope){
+            $scope.imageList = [
+                {
+                    url: 'images/image1.jpg',
+                    altName: 'image1'
+                },
+                {
+                    url: 'images/image2.jpg',
+                    altName: 'image2'
+                },
+                {
+                    url: 'images/image3.jpg',
+                    altName: 'image3'
+                },
+                {
+                    url: 'images/image4.jpg',
+                    altName: 'image4'
+                },
+                {
+                    url: 'images/image5.jpg',
+                    altName: 'image5'
+                }
+            ]
+
+            $scope.imgClick = function(index){
+                $scope.imag = $scope.imageList[index];
+                // console.log($scope.imag);
+                // console.log($scope.imag.altName);
+            };
+        });
+
+
+        // Tab3 add item controller
+        myApp.controller('addItemController', function($scope){
+            $scope.iList = [
+                            {aItem: "item1"},
+                            {aItem: "item2"},
+                            {aItem: "item3"},
+                            {aItem: "item4"}
+            ];
+            $scope.addItem = function(){
+                var newItem = $scope.item;
+                $scope.iList.pop({aItem:newItem});
+                $scope.iList.unshift({aItem:newItem});
+                $scope.item = "";
+            };
+        });
+       
+    </script>
+    
+</body>
+</html>

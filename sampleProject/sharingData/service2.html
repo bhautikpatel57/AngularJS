@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service2</title>
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+</head>
+<body>
+    
+    <div ng-controller="firstController">
+        <p ng-repeat="item in data">{{item.name}}</p>
+
+    </div>
+
+    <script>
+        var myApp = angular.module('app', []);
+
+        myApp.service('dataService', function($http){
+            this.getData = function(){
+                return $http.get('MOCK_DATA.JSON')
+            }
+        });
+
+        myApp.controller('firstController', function($scope, dataService){
+        //  if(){
+            dataService.getData()
+                .then(function(response){
+                        $scope.data = response.data;
+                });
+        });
+    // }
+    </script>
+</body>
+</html>

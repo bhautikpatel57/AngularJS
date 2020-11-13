@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Broadcast</title>
+
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+</head>
+<body>
+    <div ng-controller="parentController" style="border:2px solid #E75D5C; padding:30px;">
+        Enter here: <input type="text" ng-model="message">
+        <button ng-click="handleClick(message)">Broadcast</button>
+
+        <div ng-controller="childController" style="border:2px solid #428bca;padding:40px;">
+            <p>{{ message }}</p>
+        </div>
+    </div>
+
+
+    <script>
+        var myApp = angular.module('app', []);
+
+        myApp.controller('parentController', function($scope){
+            $scope.$handleClick = function(msg){
+                $scope.$broadcast('sendDown',
+                {
+                    abc: msg
+                });
+            };
+        });
+        myApp.controller('childController', function($scope){
+            $scope.$on('sendDown', function(event, obj){
+                $scope.message = obj.abc
+            });
+        });
+
+
+
+    </script>
+    
+</body>
+</html>

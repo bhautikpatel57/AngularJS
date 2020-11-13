@@ -1,0 +1,18 @@
+
+<div class="tabDiv container">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1>TAB 3</h1>
+            <input type="text" ng-model="item">
+            <input type="button" value="additem" ng-click="addItem()">
+            <br><br>
+            
+            <!-- <ul ng-init="items = ['item1','item2','item3','item4']"> -->
+            <ul ng-repeat="i in iList">
+                <li class="styleLi">{{i.aItem}}</li>
+                <!-- <li ng-repeat="item in items" >{{item}}</li> -->
+            </ul> 
+            <!-- </ul> -->
+        </div>
+    </div>
+</div>

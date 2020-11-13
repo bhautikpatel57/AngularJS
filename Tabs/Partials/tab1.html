@@ -1,0 +1,15 @@
+
+<div class="tabDiv container">
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1>TAB 1</h1>
+    Filter: <select ng-model="filterItems.store" ng-options="item.name for item in filterOptions.stores"></select>
+
+
+            <p id="typesName">       Selected Filter dropdown item: <span id="distyl">{{filterItems.store.name}}</span></p>
+            <ul>
+                <li ng-repeat="itam in data | filter: customFilter ">{{itam.name}}</li>
+            </ul>
+        </div>
+    </div>
+</div>

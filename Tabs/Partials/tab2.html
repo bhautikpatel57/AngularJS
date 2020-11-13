@@ -1,0 +1,20 @@
+
+<div class="tabDiv container" >
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1>TAB 2</h1>
+            <h6>Click on the Thumbnails</h6>
+            <div id="showPhotoDiv">
+                <!-- <img ng-src="images/image1.jpg" alt="image1" class="photooDiv"> -->
+                <img ng-src="{{imag.url}}" alt="{{imag.altName}}" class="photooDiv">
+            </div>
+            <!-- <div id="thumbDiv" > -->
+                <ul style="padding-left: 0px;">
+                    <li ng-repeat="imgg in imageList" style="display: inline-block;"  >
+                        <img ng-src="{{imgg.url}}" ng-click="imgClick($index)" alt="{{imgg.altName}}" class="thumbbImg">
+                    </li>
+                </ul>
+            <!-- </div> -->
+        </div>
+    </div>
+</div>

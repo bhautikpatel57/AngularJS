@@ -1,0 +1,51 @@
+
+
+.searchDiv{
+    border: 1px solid black;
+    height: 60px;
+    width: 1100px;
+    margin-left: 73px;
+    margin-top: 50px;
+    padding: 15px;
+}
+.jumbotron{
+    width: 1100px;
+    margin-left: 73px;
+    border: 1px solid black;
+    padding: 0px;
+    background-color: white;
+}
+#inputDiv{
+    position:relative;
+}
+.textField{
+    position:absolute;
+}
+.xButton{
+    position:absolute;
+    left: 230px;
+    border-radius: 30px;
+}
+#searchButton{
+    margin-left: 260px;
+    border-radius: 5px;
+    
+}
+
+.posts {
+    display: flex;
+    flex-flow: row wrap;
+}
+.post {
+    border: 1px solid black;
+    background: white;
+    margin: 10px;
+    height: 135px;
+    width: calc( (100% / 4) - 20px );
+    padding: 10px;
+    
+}
+.threeP{
+    font-size: 12px;
+    line-height: 1px;
+}

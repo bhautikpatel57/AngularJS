@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ToDo Assignment</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+</head>
+<body>
+    <!-- <div ng-view></div>     -->
+    <div ng-controller="todoControllers">
+        <h1>My Do List</h1>
+
+        <input type="text" size="45" placeholder="Add New" ng-model="toDoName" />
+        <button ng-click="add()">Add New</button>
+        <br /><br />
+
+        <div ng-repeat="items in list" >
+            <input type="checkbox" ng-model="items.done"/> {{ items.doText }}
+        </div>
+        
+        <br /><br />
+
+        <button ng-click="remove()">Remove marked</button>
+    </div>
+
+    <script>
+        var myApp = angular.module('app', []);
+
+        myApp.controller('todoControllers', function($scope){
+            $scope.list = [{doText: 'Clean House', done:false}];
+
+            $scope.add = function(){   
+                $scope.list.push({doText:$scope.toDoName, done:false});
+                $scope.toDoName = "";
+            }
+            $scope.remove = function(){
+                var oldList = $scope.list;
+                $scope.list = [];
+                angular.forEach(oldList, function(x){
+                    if(!x.done){
+                        $scope.list.push(x);
+                    }
+                });
+            }
+        });
+    </script>
+</body>
+</html>

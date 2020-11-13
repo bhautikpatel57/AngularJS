@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transfer Data</title>
+
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+
+</head>
+<body>
+    <div ng-controller="firstController">
+        <!-- <p>{{name}}</p> -->
+
+    </div>
+
+    <div ng-controller="secondController">
+        <p>{{name}}</p>
+
+    </div>
+
+
+    <script>
+        var myApp = angular.module('app', []);
+
+        myApp.service('dataService', function(){
+            
+           function setName(n){
+                    var na = n;
+                }
+
+
+
+
+        });
+
+        myApp.controller('firstController', function($scope, dataService){
+            $scope.nam = "Jack Doe";
+            dataService.setName(nam);
+
+        });
+
+        myApp.controller('secondController', function($scope, dataService){
+            dataService.getName();
+        });
+
+
+
+
+    </script>
+    
+</body>
+</html>  

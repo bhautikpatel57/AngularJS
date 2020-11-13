@@ -1,0 +1,9 @@
+Write a simple application (feel free to use any frameworks) that will allow a user to search through the attached data. The application should have a text input box and a search button that will execute the search (screen1). 
+Extra credit if you can make it search as you type instead of hitting the button but either solution is fine.
+The result of the search should be displayed below the search box as a set of tiles. 4 tiles across. (Screen2)
+User should have the ability to clear the search.
+Tile borders should be either red or blue depending on the gender.
+
+How would you modify the UI to be responsive?
+
+Will this implementation work with touch-based devices and mobile device? Why or why not?

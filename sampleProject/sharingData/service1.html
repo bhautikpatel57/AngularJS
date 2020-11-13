@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service1</title>
+
+    <!-- Angular -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+</head>
+<body>
+    <div ng-controller="firstController" style="border:2px solid #E75D5C; padding:5px;">
+        <p>{{ name }}</p>
+        <div ng-controller="secondController" style="border:2px solid #428bca;padding:5px;">
+            <p>{{ name }}</p>
+        </div>
+    </div>
+
+    <script>
+        var myApp = angular.module('app', []);
+
+        myApp.service('dataService', function(){
+            this.name = "John";
+            this.display = function(){
+                console.log("called the display function");
+            }
+        })
+
+        myApp.controller('firstController', function($scope, dataService){
+            $scope.name = dataService.name;
+            $scope.display = dataService.display();
+        });
+        myApp.controller('secondController', function($scope, dataService){
+            $scope.name = dataService.name;
+        });
+
+
+    </script>
+    
+</body>
+</html>

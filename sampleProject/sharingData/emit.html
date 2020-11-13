@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emit</title>
+
+     <!-- Angular -->
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+   
+</head>
+<body>
+
+    <div ng-controller="parentController" style="border:2px solid #E75D5C; padding:5px;">
+        Message: <p>{{message}}</p>
+
+        <div ng-controller="childController" style="border:2px solid #428bca;padding:5px;">
+            Enter something: <input type="text" ng-model="msg">
+            <button ng-click="handleClick(msg);">Emit</button>
+        </div>
+    </div>
+
+    <script>
+        var myApp = angular.module('app', []);
+
+        myApp.controller('parentController', function($scope){
+            $scope.$on('sendUp', function(event, obj){
+                $scope.message = obj.abc;
+            });
+        });
+
+        myApp.controller('childController', function($scope){
+            $scope.handleClick = function(msg){
+                $scope.$emit('sendUp',
+                {
+                    abc: msg
+                });
+            };
+        });
+    </script>
+    
+</body>
+</html>
